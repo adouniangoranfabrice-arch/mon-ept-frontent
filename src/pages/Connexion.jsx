@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { COMPTES_DEMO, useAuth } from "../store/AuthContext.jsx";
 import { Button, ErrorBox, Field } from "../components/ui.jsx";
 import Icon from "../components/Icon.jsx";
+import { LogoIcone } from "../components/Logo.jsx";
 
 export default function Connexion() {
   const { connecter } = useAuth();
@@ -34,8 +35,9 @@ export default function Connexion() {
         className="w-full max-w-sm"
       >
         <div className="mb-8 text-center">
+          <LogoIcone size={64} className="mx-auto mb-4 drop-shadow-lg" />
           <div className="font-display text-3xl font-bold text-black">
-            Mon EDT<span className="text-black">.</span>
+            MON EDT<span className="text-black">.</span>
           </div>
           <p className="mt-2 text-sm text-gray-400">Emploi du temps, élèves et notes</p>
         </div>

@@ -5,6 +5,7 @@ import { useAuth } from "./store/AuthContext.jsx";
 import { useToast } from "./components/Toast.jsx";
 import { ConfirmDialog, Modal } from "./components/ui.jsx";
 import Icon from "./components/Icon.jsx";
+import Logo from "./components/Logo.jsx";
 import Semaine from "./pages/Semaine.jsx";
 import Seances from "./pages/Seances.jsx";
 import Classes from "./pages/Classes.jsx";
@@ -149,10 +150,8 @@ export default function App() {
       {/* Menu latéral (ordinateur) */}
       <aside className="sticky top-0 hidden h-screen w-64 shrink-0 flex-col gap-1 bg-ink p-5 text-gray-300 lg:flex">
         <div className="mb-6 px-3">
-          <div className="font-display text-xl font-bold text-white">
-            Mon EDT<span className="text-[#8EA4FF]">.</span>
-          </div>
-          <StatutConnexion className="mt-1.5 text-gray-400" />
+          <Logo size={34} className="text-xl text-white" />
+          <StatutConnexion className="mt-2 text-gray-400" />
         </div>
         <nav aria-label="Menu principal" className="flex flex-col gap-1">
           {PAGES.map((p) => (
@@ -185,9 +184,7 @@ export default function App() {
 
       {/* En-tête (mobile / tablette) */}
       <header className="sticky top-0 z-30 flex items-center justify-between bg-ink px-4 pb-3 pt-[max(0.75rem,env(safe-area-inset-top))] text-gray-300 lg:hidden">
-        <div className="font-display text-lg font-bold text-white">
-          Mon EDT<span className="text-[#8EA4FF]">.</span>
-        </div>
+        <Logo size={30} className="text-lg text-white" />
         <button
           type="button"
           onClick={() => setMenuSauvegarde(true)}
