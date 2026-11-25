@@ -153,9 +153,15 @@ export function StoreProvider({ children }) {
         <div className="max-w-md space-y-3">
           <h1 className="font-display text-2xl font-bold">Impossible de charger les données</h1>
           <p className="text-muted">{etat.erreur}</p>
-          <p className="text-sm text-muted">
-            Dans le dossier <code>backend</code>, lancez : <code>.venv\Scripts\python -m uvicorn app.main:app --reload</code>
-          </p>
+          {import.meta.env.DEV ? (
+            <p className="text-sm text-muted">
+              Dans le dossier <code>backend</code>, lancez : <code>.venv/Scripts/python -m uvicorn app.main:app --reload</code>
+            </p>
+          ) : (
+            <p className="text-sm text-muted">
+              Le serveur se réveille peut-être (jusqu'à une minute après une période d'inactivité). Réessayez dans un instant.
+            </p>
+          )}
           <button type="button" onClick={charger} className="h-11 rounded-lg bg-accent px-4 text-sm font-semibold text-white hover:bg-accent-dark">
             Réessayer
           </button>
