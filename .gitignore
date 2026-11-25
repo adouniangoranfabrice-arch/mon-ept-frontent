@@ -1,0 +1,16 @@
+node_modules
+dist
+.DS_Store
+
+# Backend
+backend/.venv
+backend/*.db
+__pycache__
+.pytest_cache
+
+# Secrets (adresse MongoDB)
+backend/.env
+.env
+
+# Sauvegardes de données personnelles
+backend/sauvegardes/
