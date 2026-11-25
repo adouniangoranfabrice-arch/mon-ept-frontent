@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { useStore } from "./store/StoreContext.jsx";
 import { useAuth } from "./store/AuthContext.jsx";
@@ -22,11 +22,11 @@ function StatutConnexion({ className = "" }) {
   if (!stockage) return null;
   return (
     <div className={`flex items-center gap-2 text-xs ${className}`} title="Les données sont enregistrées par le serveur">
-      <span className="relative flex h-2 w-2">
+      {/* <span className="relative flex h-2 w-2">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
         <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-      </span>
-      Connecté · {NOMS_STOCKAGE[stockage] ?? stockage}
+      </span> */}
+      {/* Connecté · {NOMS_STOCKAGE[stockage] ?? stockage} */}
     </div>
   );
 }
@@ -59,6 +59,29 @@ function Utilisateur({ variant = "sombre", onAction }) {
       >
         <Icon name="logout" size={17} />
       </button>
+    </div>
+  );
+}
+
+/** Bandeau affiché sans réseau : les données montrées sont la dernière copie reçue. */
+function BandeauHorsLigne() {
+  const [enLigne, setEnLigne] = useState(navigator.onLine);
+  useEffect(() => {
+    const maj = () => setEnLigne(navigator.onLine);
+    window.addEventListener("online", maj);
+    window.addEventListener("offline", maj);
+    return () => {
+      window.removeEventListener("online", maj);
+      window.removeEventListener("offline", maj);
+    };
+  }, []);
+  if (enLigne) return null;
+  return (
+    <div role="status" className="mb-4 flex items-start gap-2 rounded-xl bg-amber-50 px-4 py-3 text-sm text-amber-800">
+      <Icon name="alert" size={16} className="mt-0.5 shrink-0" />
+      <span>
+        <strong>Hors ligne.</strong> Vous consultez la dernière copie de vos données. Les modifications seront possibles au retour du réseau.
+      </span>
     </div>
   );
 }
@@ -227,6 +250,7 @@ export default function App() {
 
       <main className="min-w-0 flex-1 px-4 pt-5 pb-[calc(5.5rem+env(safe-area-inset-bottom))] sm:px-8 sm:pt-8 lg:pb-8">
         <div className="mx-auto max-w-6xl">
+          <BandeauHorsLigne />
           <AnimatePresence mode="wait">
             <motion.div
               key={page}

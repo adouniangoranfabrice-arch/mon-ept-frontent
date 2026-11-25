@@ -24,7 +24,7 @@ export default function Logo({ size = 32, className = "", point = "text-[#8EA4FF
     <span className={`inline-flex items-center gap-2.5 font-display font-bold ${className}`}>
       <LogoIcone size={size} />
       <span>
-        Mon EDT<span className={point}>.</span>
+        MON EDT<span className={point}>.</span>
       </span>
     </span>
   );

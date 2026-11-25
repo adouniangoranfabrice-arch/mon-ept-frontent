@@ -25,7 +25,8 @@ export function StoreProvider({ children }) {
   const charger = useCallback(async () => {
     setEtat({ statut: "chargement", erreur: null });
     try {
-      const [donnees, sante] = await Promise.all([api.get("/data"), api.get("/health")]);
+      // /health est facultatif : hors ligne, les données viennent du cache de la PWA et /health échoue
+      const [donnees, sante] = await Promise.all([api.get("/data"), api.get("/health").catch(() => null)]);
       setStockage(sante?.stockage ?? null);
       setData(completer(donnees));
       setEtat({ statut: "pret", erreur: null });

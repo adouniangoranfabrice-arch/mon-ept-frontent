@@ -1,4 +1,5 @@
 const PATHS = {
+  share: "M12 3v12M8 7l4-4 4 4M6 11H5v10h14V11h-1",
   lock: "M6 11h12v10H6zM8 11V7a4 4 0 018 0v4",
   logout: "M15 4h4v16h-4M10 8l-4 4 4 4M6 12h11",
   user: "M12 12a4 4 0 100-8 4 4 0 000 8zM4 21c0-4 4-6 8-6s8 2 8 6",
